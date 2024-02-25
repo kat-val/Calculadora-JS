@@ -1,19 +1,15 @@
-
 const keys = document.querySelectorAll("[data-key]");
-// const operators = document.querySelectorAll(".operators");
-
-const outputPreview = document.getElementById("outputPreview");   //arriba
-const outputResult = document.getElementById("outputResult");     //abajo
-
-// FUNCIONES
+const outputPreview = document.getElementById("outputPreview");
+const outputResult = document.getElementById("outputResult");
 
 for (let key of keys){
    const value = key.dataset.key;
    // const operators = ["-", "+", "/", "%"];
+   // `<span class="operator">&times; &divide; &percnt;</span>`
 
    key.addEventListener("click", ()=> {
-
       if(value == "AC"){
+         input = "";
          outputPreview.innerText = "";
          outputResult.innerText = "";
       }
@@ -22,21 +18,19 @@ for (let key of keys){
       }
       else if(value == "="){
          try {
+            outputResult.className += " resultado";
             outputResult.innerText = eval(outputPreview.innerText);
+            outputPreview.innerText = "";
          }
          catch(err) {
-            outputPreview.innerText = "Error, vuelva a intentar";
+            outputPreview.innerText = "";
+            outputResult.innerText = "Error, vuelva a intentar";
             console.log(err)
          }
       }
       else {
+         outputResult.innerText = "";
          outputPreview.innerText += value;
       }
    });
-
 }
-
-// if(value == "-" || "+" || "/" || "%"){
-//    outputPreview.classList.add("operator");
-// }
-// outputPreview.innerText += value;
