@@ -4,12 +4,9 @@ const outputResult = document.getElementById("outputResult");
 
 for (let key of keys){
    const value = key.dataset.key;
-   // const operators = ["-", "+", "/", "%"];
-   // `<span class="operator">&times; &divide; &percnt;</span>`
 
    key.addEventListener("click", ()=> {
       if(value == "AC"){
-         input = "";
          outputPreview.innerText = "";
          outputResult.innerText = "";
       }
