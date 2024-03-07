@@ -45,6 +45,7 @@ body {
    color: #e9e9e9;
    display: grid;
    place-content: center;
+   height: 100svh;
    gap: 1.5rem;
 }
 
