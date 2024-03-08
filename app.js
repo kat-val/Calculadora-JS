@@ -3,10 +3,9 @@ const outputPreview = document.getElementById("outputPreview");
 const outputResult = document.getElementById("outputResult");
 
 class Calculadora {
-   constructor(num, num2, op, res){
-      this.num = num;
-      this.num2 = num2;
-      this.operador = op;
+   constructor(num, num2, res){
+      this.num = parseFloat(num);
+      this.num2 = parseFloat(num2);
       this.res = res;
    }
 
@@ -26,15 +25,44 @@ class Calculadora {
       this.num %= this.num2;
    }
 
-   eliminarNumero(){
+   static eliminarNumero(){
       outputPreview.innerText = outputPreview.innerText.slice(0,-1);
    }
-   eliminarTodo(){
+   static eliminarTodo(){
       outputPreview.innerText = "";
       outputResult.innerText = "";
    }
 }
 
+
+for (let key of keys){
+   const value = key.dataset.key;
+
+   key.addEventListener("click", ()=> {
+      if(value == "AC"){
+         Calculadora.eliminarTodo();
+      }
+      else if(value == "blackspace"){
+         Calculadora.eliminarNumero();
+      }
+      else if(value == "="){
+         try {
+            outputResult.className += " resultado";
+            outputResult.innerText = eval(outputPreview.innerText);
+            outputPreview.innerText = "";
+         }
+         catch(err) {
+            outputPreview.innerText = "";
+            outputResult.innerText = "Error, vuelva a intentar";
+            console.error(err)
+         }
+      }
+      else {
+         outputResult.innerText = "";
+         outputPreview.innerText += value;
+      }
+   });
+}
 
 // for (let key of keys){
 //    const value = key.dataset.key;
